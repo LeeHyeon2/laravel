@@ -15,41 +15,42 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">회원정보를 입력하세요</h1>
                                 </div>
-                                <form class="user">
+                                <form class="user" action="{{ route('members.store') }}" method="post">
+                                    @csrf
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="exampleFirstName" placeholder="아이디">
+                                            <input type="text" class="form-control form-control-user" name="member_id"
+                                                placeholder="아이디">
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="exampleLastName" placeholder="비밀번호">
+                                            <input type="text" class="form-control form-control-user" name="nickname"
+                                                placeholder="닉네임">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                        <input type="email" class="form-control form-control-user" name="email"
                                             placeholder="이메일">
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="비밀번호">
+                                            <input type="password" class="form-control form-control-user" name="password"
+                                                placeholder="비밀번호">
                                         </div>
                                         <div class="col-sm-6">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleRepeatPassword" placeholder="비밀번호 확인">
+                                                name="password_check" placeholder="비밀번호 확인">
                                         </div>
                                     </div>
-                                    <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
                                         회원가입
-                                    </a>
+                                    </button>
                                     <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    {{-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                         <i class="fab fa-google fa-fw"></i> Register with Google
                                     </a>
                                     <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                         <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                    </a>
+                                    </a> --}}
                                 </form>
                                 <hr>
                                 <div class="text-center">

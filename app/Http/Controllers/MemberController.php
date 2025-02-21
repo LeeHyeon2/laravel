@@ -38,8 +38,26 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $this->memberService->register($request->all());
-        return redirect()->route('index');
+        try {
+            // 유효성 검사
+            $validatedData = $request->validate([
+                'member_id' => 'required',
+                'nickname' => 'required',
+                'email' => 'required|email',
+                'password' => 'required',
+                'password_check' => 'required|same:password',
+            ]);
+
+            Log::info('컨트롤러체크', $validatedData);
+            $this->memberService->register($validatedData);
+            return redirect()->route('index')->with('success', '회원가입이 완료되었습니다.');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            Log::error('유효성 검사 실패', ['errors' => $e->errors()]);
+            return redirect()->route('user.register')->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            Log::error('회원가입 실패', ['error' => $e->getMessage()]);
+            return redirect()->route('user.register')->with('error', $e->getMessage());
+        }
     }
 
     /**

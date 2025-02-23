@@ -35,6 +35,7 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      * 이거 회원가입 인거잖아?
+     * crud 형식으로 잘바꿔라잉
      */
     public function store(Request $request)
     {
